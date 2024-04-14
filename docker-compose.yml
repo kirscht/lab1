@@ -1,0 +1,287 @@
+version: "3.3"
+
+services:
+  metasploitable2:
+    container_name: metasploitable2
+    image: kirscht/metasploitable2
+    tty: true
+    volumes:
+      - ./test_dir:/test_dir
+    networks:
+      lab1-net:
+        aliases:
+          - ms2
+          - ms2.mylab.net
+
+#    networks:
+#      lab1-net:
+#        ipv4_address: 10.10.0.4
+
+  metasploitable3:
+    image: kirscht/metasploitable3-ub1404
+    container_name: metasploitable3
+    # use environment variables to set password, enable root and start services
+    entrypoint: /entrypoint.sh
+    environment:
+      PASS: 'myPass'
+      ROOT: 'yes'
+      CUPS: 'yes'
+      FTP: 'yes'
+      HTTP: 'yes'
+      IRC: 'yes'
+      SMB: 'yes'
+      SSH: 'yes'
+      SQL: 'yes'
+    networks:
+      lab1-net:
+        aliases:
+          - ms3
+          - ms3.mylab.net
+
+  beef:
+    container_name: beef
+    image: kirscht/beef
+    tty: true
+    ports:
+      - 3000:3000
+      - 6789:6789
+      - 61985:61985
+      - 61986:61986
+    networks:
+      lab1-net:
+        aliases:
+          - beef
+          - beef.mylab.net
+
+  juiceshop:
+    container_name: juiceshop
+    image: kirscht/juiceshop
+    environment:
+      - NODE_ENV="unsafe"
+      - NODE_ENV="tutorial"
+    tty: true
+    ports:
+      - 10005:3000
+    networks:
+      lab1-net:
+        aliases:
+          - juiceshop
+          - juiceshop.mylab.net
+
+  bwapp:
+    container_name: bwapp
+    image: kirscht/bwapp
+    tty: true
+    ports:
+      - 10011:80
+    networks:
+      lab1-net:
+        aliases:
+          - bwapp
+          - bwapp.mylab.net
+
+  bodgeit:
+    container_name: bodgeit
+    image: kirscht/bodgeit
+    tty: true
+    ports:
+      - 10007:8080
+    networks:
+      lab1-net:
+        aliases:
+          - bodgeit
+          - bodgeit.mylab.net
+
+  shellshock:
+    container_name: shellshock
+    image: kirscht/shellshock
+    stdin_open: true
+    tty: true
+    restart: always
+    working_dir: /
+    shm_size: 256
+    command: main.sh # tail -f /dev/null
+    ports:
+      - 10012:8080
+      - 10027:80
+      - 20027:443
+    networks:
+      lab1-net:
+        aliases:
+          - shellshock
+          - shellshock.mylab.net
+
+  heartbleed:
+    container_name: heartbleed
+    image: kirscht/heartbleed
+    tty: true
+    ports:
+      - 10009:80
+    networks:
+      lab1-net:
+        aliases:
+          - heartbleed
+          - heartbleed.mylab.net
+
+  dvwa:
+    container_name: dvwa
+    image: kirscht/dvwa
+    tty: true
+    ports:
+      - 10000:80
+    networks:
+      lab1-net:
+        aliases:
+          - dvwa
+          - dvwa.mylab.net
+
+  hackazon:
+    container_name: hackazon
+    image: kirscht/hackazon
+    tty: true
+    ports:
+      - 10001:80
+    networks:
+      lab1-net:
+        aliases:
+          - hackazon
+          - hackazon.mylab.net
+
+  mutillidae:
+    container_name: mutillidae
+    image: kirscht/mutillidae
+    tty: true
+    ports:
+      - 10002:80
+      - 20002:3306
+    networks:
+      lab1-net:
+        aliases:
+          - mutillidae
+          - mutillidae.mylab.net
+
+  webgoatdn:
+    container_name: webgoatdn
+    image: kirscht/webgoatdn
+    stdin_open: true
+    tty: true
+    ports:
+      - 10013:9000
+    networks:
+      lab1-net:
+        aliases:
+          - webgoatdn
+          - webgoatdn.mylab.net
+
+  goatandwolf:
+    container_name: goatandwolf
+    image: kirscht/goatandwolf
+    stdin_open: true
+    tty: true
+    environment:
+      - TZ=America/New_York
+    ports:
+      - 10003:8080
+      - 10004:9090
+    networks:
+      lab1-net:
+        aliases:
+          - goatandwolf
+          - goatandwolf.mylab.net
+
+
+    # Use the following to login
+    ## http://localhost:10003/WebGoat/login
+    ## http://localhost:10004/login
+
+  webgoat:
+    container_name: webgoat
+    image: kirscht/webgoat
+    stdin_open: true
+    tty: true
+    environment:
+      - TZ=America/New_York
+    ports:
+      - 10014:8080
+      - 10015:9090
+    networks:
+      lab1-net:
+        aliases:
+          - webgoat
+          - webgoat.mylab.net
+
+
+    # Use the following to login
+    ## http://localhost:10003/WebGoat/login
+    ## this is a standalone WebGoat Instance.
+
+  owaspbricks:
+    container_name: owaspbricks
+    image: kirscht/owaspbricks
+    stdin_open: true
+    tty: true
+    environment:
+      - TZ=America/New_York
+    ports:
+      - 10006:80
+    networks:
+      lab1-net:
+        aliases:
+          - owaspbricks
+          - owaspbricks.mylab.net
+
+
+#    networks:
+#    networks:
+#      localnet:
+#        ipv4_address: 172.1.1.12
+
+#    networks:
+  kali:
+    container_name: kali
+    image: kali-rolling
+    tty: true
+    networks:
+      lab1-net:
+        aliases:
+          - kali
+          - kali.mylab.net
+
+
+#  kali2:
+#    container_name: kali2
+#    image: kasmweb/kali-rolling-desktop:1.14.0
+#    tty: true
+#    shm_size: '512m'
+#    ports: ['6901:6901']
+#    environment:
+#      VNC_PW: 'password'
+
+
+networks:
+  default:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.20.0.0/24
+
+networks:
+  lab1-net:
+    driver: bridge
+#    driver: host
+    ipam:
+      driver: default
+      config:
+        - subnet: "172.20.0.0/24"
+#        - subnet: "10.10.0.0/24"
+volumes:
+  juiceshop:
+  dvwa:
+  mutillidae:
+  hackazon:
+  webgoatwolf:
+  webgoat:
+  webgoat-dn:
+  bricks:
+  shellshock:
