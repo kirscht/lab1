@@ -4,11 +4,13 @@ services:
   metasploitable2:
     container_name: metasploitable2
     image: kirscht/metasploitable2
+    hostname: "metasploitable2"
     tty: true
     volumes:
       - ./test_dir:/test_dir
     networks:
       lab1-net:
+        ipv4_address: 172.20.192.3
         aliases:
           - ms2
           - ms2.mylab.net
@@ -20,6 +22,7 @@ services:
   metasploitable3:
     image: kirscht/metasploitable3-ub1404
     container_name: metasploitable3
+    hostname: "metasploitable3"
     # use environment variables to set password, enable root and start services
     entrypoint: /entrypoint.sh
     environment:
@@ -34,6 +37,7 @@ services:
       SQL: 'yes'
     networks:
       lab1-net:
+        ipv4_address: 172.20.192.4
         aliases:
           - ms3
           - ms3.mylab.net
@@ -41,14 +45,16 @@ services:
   beef:
     container_name: beef
     image: kirscht/beef
+    hostname: "beef"
     tty: true
-    ports:
-      - 3000:3000
-      - 6789:6789
-      - 61985:61985
-      - 61986:61986
+#    ports:
+#      - 3000:3000
+#      - 6789:6789
+#      - 61985:61985
+#      - 61986:61986
     networks:
       lab1-net:
+        ipv4_address: 172.20.192.5
         aliases:
           - beef
           - beef.mylab.net
@@ -56,14 +62,16 @@ services:
   juiceshop:
     container_name: juiceshop
     image: kirscht/juiceshop
+    hostname: "juiceshop"
     environment:
       - NODE_ENV="unsafe"
       - NODE_ENV="tutorial"
     tty: true
-    ports:
-      - 10005:3000
+#    ports:
+#      - 10005:3000
     networks:
       lab1-net:
+        ipv4_address: 172.20.192.6
         aliases:
           - juiceshop
           - juiceshop.mylab.net
@@ -71,11 +79,13 @@ services:
   bwapp:
     container_name: bwapp
     image: kirscht/bwapp
+    hostname: "bwapp"
     tty: true
-    ports:
-      - 10011:80
+#    ports:
+#      - 10011:80
     networks:
       lab1-net:
+        ipv4_address: 172.20.192.7
         aliases:
           - bwapp
           - bwapp.mylab.net
@@ -83,11 +93,13 @@ services:
   bodgeit:
     container_name: bodgeit
     image: kirscht/bodgeit
+    hostname: "bodgeit"
     tty: true
-    ports:
-      - 10007:8080
+#    ports:
+#      - 10007:8080
     networks:
       lab1-net:
+        ipv4_address: 172.20.192.8
         aliases:
           - bodgeit
           - bodgeit.mylab.net
@@ -95,18 +107,20 @@ services:
   shellshock:
     container_name: shellshock
     image: kirscht/shellshock
+    hostname: "shellshock"
     stdin_open: true
     tty: true
     restart: always
     working_dir: /
     shm_size: 256
     command: main.sh # tail -f /dev/null
-    ports:
-      - 10012:8080
-      - 10027:80
-      - 20027:443
+#    ports:
+#      - 10012:8080
+#      - 10027:80
+#      - 20027:443
     networks:
       lab1-net:
+        ipv4_address: 172.20.192.9
         aliases:
           - shellshock
           - shellshock.mylab.net
@@ -114,11 +128,13 @@ services:
   heartbleed:
     container_name: heartbleed
     image: kirscht/heartbleed
+    hostname: "heartbleed"
     tty: true
-    ports:
-      - 10009:80
+#    ports:
+#      - 10009:80
     networks:
       lab1-net:
+        ipv4_address: 172.20.192.10
         aliases:
           - heartbleed
           - heartbleed.mylab.net
@@ -126,11 +142,13 @@ services:
   dvwa:
     container_name: dvwa
     image: kirscht/dvwa
+    hostname: "dvwa"
     tty: true
-    ports:
-      - 10000:80
+#    ports:
+#      - 10000:80
     networks:
       lab1-net:
+        ipv4_address: 172.20.192.11
         aliases:
           - dvwa
           - dvwa.mylab.net
@@ -138,11 +156,13 @@ services:
   hackazon:
     container_name: hackazon
     image: kirscht/hackazon
+    hostname: "hackazon"
     tty: true
-    ports:
-      - 10001:80
+#    ports:
+#      - 10001:80
     networks:
       lab1-net:
+        ipv4_address: 172.20.192.12
         aliases:
           - hackazon
           - hackazon.mylab.net
@@ -150,12 +170,14 @@ services:
   mutillidae:
     container_name: mutillidae
     image: kirscht/mutillidae
+    hostname: "mutillidae"
     tty: true
-    ports:
-      - 10002:80
-      - 20002:3306
+#    ports:
+#      - 10002:80
+#      - 20002:3306
     networks:
       lab1-net:
+        ipv4_address: 172.20.192.13
         aliases:
           - mutillidae
           - mutillidae.mylab.net
@@ -163,12 +185,14 @@ services:
   webgoatdn:
     container_name: webgoatdn
     image: kirscht/webgoatdn
+    hostname: "webgoatdn"
     stdin_open: true
     tty: true
-    ports:
-      - 10013:9000
+#    ports:
+#      - 10013:9000
     networks:
       lab1-net:
+        ipv4_address: 172.20.192.14
         aliases:
           - webgoatdn
           - webgoatdn.mylab.net
@@ -176,15 +200,17 @@ services:
   goatandwolf:
     container_name: goatandwolf
     image: kirscht/goatandwolf
+    hostname: "goatandwolf"
     stdin_open: true
     tty: true
     environment:
       - TZ=America/New_York
-    ports:
-      - 10003:8080
-      - 10004:9090
+#    ports:
+#      - 10003:8080
+#      - 10004:9090
     networks:
       lab1-net:
+        ipv4_address: 172.20.192.15
         aliases:
           - goatandwolf
           - goatandwolf.mylab.net
@@ -197,15 +223,17 @@ services:
   webgoat:
     container_name: webgoat
     image: kirscht/webgoat
+    hostname: "webgoat"
     stdin_open: true
     tty: true
     environment:
       - TZ=America/New_York
-    ports:
-      - 10014:8080
-      - 10015:9090
+#    ports:
+#      - 10014:8080
+#      - 10015:9090
     networks:
       lab1-net:
+        ipv4_address: 172.20.192.16
         aliases:
           - webgoat
           - webgoat.mylab.net
@@ -218,14 +246,16 @@ services:
   owaspbricks:
     container_name: owaspbricks
     image: kirscht/owaspbricks
+    hostname: "owaspbricks"
     stdin_open: true
     tty: true
     environment:
       - TZ=America/New_York
-    ports:
-      - 10006:80
+#    ports:
+#      - 10006:80
     networks:
       lab1-net:
+        ipv4_address: 172.20.192.17
         aliases:
           - owaspbricks
           - owaspbricks.mylab.net
@@ -238,11 +268,14 @@ services:
 
 #    networks:
   kali:
-    container_name: kali
+    container_name: kali-headless
     image: kali-rolling
+    hostname: "kali-headless"
+    stdin_open: true
     tty: true
     networks:
-      lab1-net:
+     lab1-net:
+        ipv4_address: 172.20.192.2
         aliases:
           - kali
           - kali.mylab.net
@@ -269,11 +302,10 @@ networks:
 networks:
   lab1-net:
     driver: bridge
-#    driver: host
     ipam:
-      driver: default
       config:
-        - subnet: "172.20.0.0/24"
+        - subnet: "172.20.192.0/24"
+        - subnet: "2001:3984:3989::/64"
 #        - subnet: "10.10.0.0/24"
 volumes:
   juiceshop:
