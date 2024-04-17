@@ -9,7 +9,7 @@ services:
     volumes:
       - ./test_dir:/test_dir
     networks:
-      lab1-net:
+      main_lab1-net:
         ipv4_address: 172.20.192.3
         aliases:
           - ms2
@@ -36,7 +36,7 @@ services:
       SSH: 'yes'
       SQL: 'yes'
     networks:
-      lab1-net:
+      main_lab1-net:
         ipv4_address: 172.20.192.4
         aliases:
           - ms3
