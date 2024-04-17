@@ -1,0 +1,29 @@
+services:
+
+  kali:
+    container_name: kali-headless
+    image: kali-rolling
+    hostname: "kali-headless"
+    stdin_open: true
+    tty: true
+    networks:
+      lab1-net:
+        ipv4_address: 172.20.192.2
+        aliases:
+          - kali
+          - kali.mylab.net
+
+networks:
+  default:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.20.0.0/24
+
+  lab1-net:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: "172.20.192.0/24"
+        - subnet: "2001:3984:3989::/64"
