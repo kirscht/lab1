@@ -43,5 +43,5 @@ services:
           - ms3.mylab.net
 
 networks:
-  main_lab-net:
+  main_lab1-net:
     external: true
