@@ -25,6 +25,17 @@ dockerfile
 
 }
 
+function ansible-dockerfile ()
+{
+
+cat <<dockerfile > ./dockerfile
+FROM ${REPO}
+RUN apk update && apk add ansible
+dockerfile
+
+}
+
+
 case ${1} in
 
   kali)
@@ -105,6 +116,13 @@ case ${1} in
     IMAGE="${1}"
     dockerfile
     ;;
+
+  ansible)
+    REPO="alpine:latest"
+    IMAGE="${1}"
+    ansible-dockerfile
+    ;;
+
 
   *)
     printf "Args must be: kali, juiceshop\n"

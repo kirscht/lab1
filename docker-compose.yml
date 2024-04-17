@@ -15,9 +15,9 @@ services:
           - ms2
           - ms2.mylab.net
 
-#    networks:
-#      lab1-net:
-#        ipv4_address: 10.10.0.4
+  #    networks:
+  #      lab1-net:
+  #        ipv4_address: 10.10.0.4
 
   metasploitable3:
     image: kirscht/metasploitable3-ub1404
@@ -47,11 +47,11 @@ services:
     image: kirscht/beef
     hostname: "beef"
     tty: true
-#    ports:
-#      - 3000:3000
-#      - 6789:6789
-#      - 61985:61985
-#      - 61986:61986
+    #    ports:
+    #      - 3000:3000
+    #      - 6789:6789
+    #      - 61985:61985
+    #      - 61986:61986
     networks:
       lab1-net:
         ipv4_address: 172.20.192.5
@@ -67,8 +67,8 @@ services:
       - NODE_ENV="unsafe"
       - NODE_ENV="tutorial"
     tty: true
-#    ports:
-#      - 10005:3000
+    #    ports:
+    #      - 10005:3000
     networks:
       lab1-net:
         ipv4_address: 172.20.192.6
@@ -81,8 +81,8 @@ services:
     image: kirscht/bwapp
     hostname: "bwapp"
     tty: true
-#    ports:
-#      - 10011:80
+    #    ports:
+    #      - 10011:80
     networks:
       lab1-net:
         ipv4_address: 172.20.192.7
@@ -95,8 +95,8 @@ services:
     image: kirscht/bodgeit
     hostname: "bodgeit"
     tty: true
-#    ports:
-#      - 10007:8080
+    #    ports:
+    #      - 10007:8080
     networks:
       lab1-net:
         ipv4_address: 172.20.192.8
@@ -114,10 +114,10 @@ services:
     working_dir: /
     shm_size: 256
     command: main.sh # tail -f /dev/null
-#    ports:
-#      - 10012:8080
-#      - 10027:80
-#      - 20027:443
+    #    ports:
+    #      - 10012:8080
+    #      - 10027:80
+    #      - 20027:443
     networks:
       lab1-net:
         ipv4_address: 172.20.192.9
@@ -130,8 +130,8 @@ services:
     image: kirscht/heartbleed
     hostname: "heartbleed"
     tty: true
-#    ports:
-#      - 10009:80
+    #    ports:
+    #      - 10009:80
     networks:
       lab1-net:
         ipv4_address: 172.20.192.10
@@ -144,8 +144,8 @@ services:
     image: kirscht/dvwa
     hostname: "dvwa"
     tty: true
-#    ports:
-#      - 10000:80
+    #    ports:
+    #      - 10000:80
     networks:
       lab1-net:
         ipv4_address: 172.20.192.11
@@ -158,8 +158,8 @@ services:
     image: kirscht/hackazon
     hostname: "hackazon"
     tty: true
-#    ports:
-#      - 10001:80
+    #    ports:
+    #      - 10001:80
     networks:
       lab1-net:
         ipv4_address: 172.20.192.12
@@ -172,9 +172,9 @@ services:
     image: kirscht/mutillidae
     hostname: "mutillidae"
     tty: true
-#    ports:
-#      - 10002:80
-#      - 20002:3306
+    #    ports:
+    #      - 10002:80
+    #      - 20002:3306
     networks:
       lab1-net:
         ipv4_address: 172.20.192.13
@@ -188,8 +188,8 @@ services:
     hostname: "webgoatdn"
     stdin_open: true
     tty: true
-#    ports:
-#      - 10013:9000
+    #    ports:
+    #      - 10013:9000
     networks:
       lab1-net:
         ipv4_address: 172.20.192.14
@@ -205,9 +205,9 @@ services:
     tty: true
     environment:
       - TZ=America/New_York
-#    ports:
-#      - 10003:8080
-#      - 10004:9090
+    #    ports:
+    #      - 10003:8080
+    #      - 10004:9090
     networks:
       lab1-net:
         ipv4_address: 172.20.192.15
@@ -228,9 +228,9 @@ services:
     tty: true
     environment:
       - TZ=America/New_York
-#    ports:
-#      - 10014:8080
-#      - 10015:9090
+    #    ports:
+    #      - 10014:8080
+    #      - 10015:9090
     networks:
       lab1-net:
         ipv4_address: 172.20.192.16
@@ -251,8 +251,8 @@ services:
     tty: true
     environment:
       - TZ=America/New_York
-#    ports:
-#      - 10006:80
+    #    ports:
+    #      - 10006:80
     networks:
       lab1-net:
         ipv4_address: 172.20.192.17
@@ -260,13 +260,54 @@ services:
           - owaspbricks
           - owaspbricks.mylab.net
 
+  ansible:
+    container_name: ansible
+    image: kirscht/ansible
+    hostname: "ansible"
+    stdin_open: true
+    tty: true
+    environment:
+      - TZ=America/New_York
+    volumes:
+      - ./ansible/etc:/etc/ansible
+      - ./ansible:/ansible
+    #    ports:
+    #      - 80
+    networks:
+      lab1-net:
+        ipv4_address: 172.20.192.18
+        aliases:
+          - ansible
+          - ansible.mylab.net
 
-#    networks:
-#    networks:
-#      localnet:
-#        ipv4_address: 172.1.1.12
 
-#    networks:
+  w11:
+    container_name: w11
+    image: dockurr/windows
+    hostname: "w11"
+    stdin_open: true
+    tty: true
+    environment:
+      VERSION: "win11"
+    devices:
+      - /dev/kvm
+    cap_add:
+      - NET_ADMIN
+    stop_grace_period: 2m
+    restart: on-failure
+    networks:
+      lab1-net:
+        ipv4_address: 172.20.192.19
+        aliases:
+          - kali
+          - kali.mylab.net
+
+  #    networks:
+  #    networks:
+  #      localnet:
+  #        ipv4_address: 172.1.1.12
+
+  #    networks:
   kali:
     container_name: kali-headless
     image: kali-rolling
@@ -274,7 +315,7 @@ services:
     stdin_open: true
     tty: true
     networks:
-     lab1-net:
+      lab1-net:
         ipv4_address: 172.20.192.2
         aliases:
           - kali
