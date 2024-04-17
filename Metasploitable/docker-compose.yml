@@ -1,0 +1,47 @@
+version: "3.3"
+
+services:
+  metasploitable2:
+    container_name: metasploitable2
+    image: kirscht/metasploitable2
+    hostname: "metasploitable2"
+    tty: true
+    volumes:
+      - ./test_dir:/test_dir
+    networks:
+      lab1-net:
+        ipv4_address: 172.20.192.3
+        aliases:
+          - ms2
+          - ms2.mylab.net
+
+  #    networks:
+  #      lab1-net:
+  #        ipv4_address: 10.10.0.4
+
+  metasploitable3:
+    image: kirscht/metasploitable3-ub1404
+    container_name: metasploitable3
+    hostname: "metasploitable3"
+    # use environment variables to set password, enable root and start services
+    entrypoint: /entrypoint.sh
+    environment:
+      PASS: 'myPass'
+      ROOT: 'yes'
+      CUPS: 'yes'
+      FTP: 'yes'
+      HTTP: 'yes'
+      IRC: 'yes'
+      SMB: 'yes'
+      SSH: 'yes'
+      SQL: 'yes'
+    networks:
+      lab1-net:
+        ipv4_address: 172.20.192.4
+        aliases:
+          - ms3
+          - ms3.mylab.net
+
+networks:
+  main_lab-net:
+    external: true
