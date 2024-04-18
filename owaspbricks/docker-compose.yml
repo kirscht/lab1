@@ -11,9 +11,9 @@ services:
     #    ports:
     #      - 10006:80
     networks:
-      lab1-net:
+      main_lab1-net:
         ipv4_address: 172.20.192.17
-        main_aliases:
+        aliases:
           - owaspbricks
           - owaspbricks.mylab.net
 
