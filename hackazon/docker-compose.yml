@@ -1,0 +1,19 @@
+services:
+
+  hackazon:
+    container_name: hackazon
+    image: kirscht/hackazon
+    hostname: "hackazon"
+    tty: true
+    #    ports:
+    #      - 10001:80
+    networks:
+     main_lab1-net:
+        ipv4_address: 172.20.192.12
+        aliases:
+          - hackazon
+          - hackazon.mylab.net
+
+networks:
+  main_lab1-net:
+    external: true
