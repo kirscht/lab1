@@ -1,0 +1,19 @@
+services:
+
+  dvwa:
+    container_name: dvwa
+    image: kirscht/dvwa
+    hostname: "dvwa"
+    tty: true
+    #    ports:
+    #      - 10000:80
+    networks:
+      main_lab1-net:
+        ipv4_address: 172.20.192.11
+        aliases:
+          - dvwa
+          - dvwa.mylab.net
+
+networks:
+  main_lab1-net:
+    external: true
