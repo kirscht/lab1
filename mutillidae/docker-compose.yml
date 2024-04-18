@@ -9,7 +9,7 @@ services:
     #      - 10002:80
     #      - 20002:3306
     networks:
-      lab1-net:
+      main_lab1-net:
         ipv4_address: 172.20.192.13
         aliases:
           - mutillidae
