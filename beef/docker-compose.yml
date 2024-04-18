@@ -1,0 +1,25 @@
+services:
+
+
+
+  beef:
+    container_name: beef
+    image: kirscht/beef
+    hostname: "beef"
+    tty: true
+    #    ports:
+    #      - 3000:3000
+    #      - 6789:6789
+    #      - 61985:61985
+    #      - 61986:61986
+    networks:
+      lab1-net:
+        ipv4_address: 172.20.192.5
+        aliases:
+          - beef
+          - beef.mylab.net
+
+
+networks:
+  main_lab1-net:
+    external: true
