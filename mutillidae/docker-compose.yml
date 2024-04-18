@@ -1,0 +1,20 @@
+services:
+
+  mutillidae:
+    container_name: mutillidae
+    image: kirscht/mutillidae
+    hostname: "mutillidae"
+    tty: true
+    #    ports:
+    #      - 10002:80
+    #      - 20002:3306
+    networks:
+      lab1-net:
+        ipv4_address: 172.20.192.13
+        aliases:
+          - mutillidae
+          - mutillidae.mylab.net
+
+networks:
+  main_lab1-net:
+    external: true
