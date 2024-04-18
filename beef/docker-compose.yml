@@ -13,7 +13,7 @@ services:
     #      - 61985:61985
     #      - 61986:61986
     networks:
-      lab1-net:
+      main_lab1-net:
         ipv4_address: 172.20.192.5
         aliases:
           - beef
