@@ -1,0 +1,21 @@
+services:
+
+  bwapp:
+    container_name: bwapp
+    image: kirscht/bwapp
+    hostname: "bwapp"
+    tty: true
+    #    ports:
+    #      - 10011:80
+    networks:
+      main_lab1-net:
+        ipv4_address: 172.20.192.7
+        aliases:
+          - bwapp
+          - bwapp.mylab.net
+
+
+
+networks:
+  main_lab1-net:
+    external: true
