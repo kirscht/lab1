@@ -1,0 +1,19 @@
+services:
+
+  bodgeit:
+    container_name: bodgeit
+    image: kirscht/bodgeit
+    hostname: "bodgeit"
+    tty: true
+    #    ports:
+    #      - 10007:8080
+    networks:
+      lab1-net:
+        ipv4_address: 172.20.192.8
+        aliases:
+          - bodgeit
+          - bodgeit.mylab.net
+
+networks:
+  main_lab1-net:
+    external: true
