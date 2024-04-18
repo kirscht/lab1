@@ -1,0 +1,23 @@
+services:
+
+
+  juiceshop:
+    container_name: juiceshop
+    image: kirscht/juiceshop
+    hostname: "juiceshop"
+    environment:
+      - NODE_ENV="unsafe"
+      - NODE_ENV="tutorial"
+    tty: true
+    #    ports:
+    #      - 10005:3000
+    networks:
+      main_lab1-net:
+        ipv4_address: 172.20.192.6
+        aliases:
+          - juiceshop
+          - juiceshop.mylab.net
+
+networks:
+  main_lab1-net:
+    external: true
