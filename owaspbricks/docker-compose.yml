@@ -1,0 +1,22 @@
+services:
+
+  owaspbricks:
+    container_name: owaspbricks
+    image: kirscht/owaspbricks
+    hostname: "owaspbricks"
+    stdin_open: true
+    tty: true
+    environment:
+      - TZ=America/New_York
+    #    ports:
+    #      - 10006:80
+    networks:
+      lab1-net:
+        ipv4_address: 172.20.192.17
+        main_aliases:
+          - owaspbricks
+          - owaspbricks.mylab.net
+
+networks:
+  main_lab1-net:
+    external: true
