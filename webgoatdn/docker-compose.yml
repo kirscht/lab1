@@ -1,0 +1,20 @@
+services:
+
+  webgoatdn:
+    container_name: webgoatdn
+    image: kirscht/webgoatdn
+    hostname: "webgoatdn"
+    stdin_open: true
+    tty: true
+    #    ports:
+    #      - 10013:9000
+    networks:
+      lab1-net:
+        ipv4_address: 172.20.192.14
+        aliases:
+          - webgoatdn
+          - webgoatdn.mylab.net
+
+networks:
+  main_lab1-net:
+    external: true
