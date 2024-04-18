@@ -1,0 +1,19 @@
+services:
+
+  heartbleed:
+    container_name: heartbleed
+    image: kirscht/heartbleed
+    hostname: "heartbleed"
+    tty: true
+    #    ports:
+    #      - 10009:80
+    networks:
+      main_lab1-net:
+        ipv4_address: 172.20.192.10
+        aliases:
+          - heartbleed
+          - heartbleed.mylab.net
+
+networks:
+  main_lab1-net:
+    external: true
