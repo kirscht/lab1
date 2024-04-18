@@ -5,7 +5,7 @@ if [ -d ~/lab1/${1} ]
 then
   cd ~/lab1/${1}
 
-  if [ "${0}" == "start_container.sh" || "${0}" == "bin/start_container.sh" ]
+  if [ "${0}" == "start_container.sh" ] || [ "${0}" == "bin/start_container.sh" ]
   then
     sudo docker-compose up -d
     sudo docker-compose ps
