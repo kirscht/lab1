@@ -1,12 +1,13 @@
 #!/usr/bin/env bash
 
 echo "Script ${0} ${1}"
-pwd
+
 
 
 if [ -d ~/lab1/${1} ]
 then
   cd ~/lab1/${1}
+  pwd
 
   if [[ "${0}" == "start_container.sh" || "${0}" == "bin/start_container.sh" ]]
   then
