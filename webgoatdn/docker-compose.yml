@@ -9,7 +9,7 @@ services:
     #    ports:
     #      - 10013:9000
     networks:
-      lab1-net:
+      main_lab1-net:
         ipv4_address: 172.20.192.14
         aliases:
           - webgoatdn
