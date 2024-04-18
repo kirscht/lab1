@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+cd ~/lab1/
+
 services=(
 ansible
 bwapp
@@ -19,7 +21,7 @@ webgoatmain)
 
 for i in "${services[@]}"
 do
-  bash ~/lab1/bin/stop_container.sh "${i}"
+  bash bin/stop_container.sh "${i}"
 done
 
 #strings=(
