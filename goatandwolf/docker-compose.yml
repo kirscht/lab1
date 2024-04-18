@@ -1,0 +1,23 @@
+services:
+
+  goatandwolf:
+    container_name: goatandwolf
+    image: kirscht/goatandwolf
+    hostname: "goatandwolf"
+    stdin_open: true
+    tty: true
+    environment:
+      - TZ=America/New_York
+    #    ports:
+    #      - 10003:8080
+    #      - 10004:9090
+    networks:
+      main_lab1-net:
+        ipv4_address: 172.20.192.15
+        aliases:
+          - goatandwolf
+          - goatandwolf.mylab.net
+
+networks:
+  main_lab1-net:
+    external: true
