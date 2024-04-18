@@ -1,0 +1,26 @@
+services:
+
+  shellshock:
+    container_name: shellshock
+    image: kirscht/shellshock
+    hostname: "shellshock"
+    stdin_open: true
+    tty: true
+    restart: always
+    working_dir: /
+    shm_size: 256
+    command: main.sh # tail -f /dev/null
+    #    ports:
+    #      - 10012:8080
+    #      - 10027:80
+    #      - 20027:443
+    networks:
+      main_lab1-net:
+        ipv4_address: 172.20.192.9
+        aliases:
+          - shellshock
+          - shellshock.mylab.net
+
+networks:
+  main_lab1-net:
+    external: true
