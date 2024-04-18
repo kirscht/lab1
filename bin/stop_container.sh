@@ -17,7 +17,7 @@ then
   if [[ "${0}" == "stop_container.sh" || "${0}" == "bin/stop_container.sh" ]]
   then
     sudo docker-compose stop
-    sudo docker-compose ps
+    #sudo docker-compose ps
   fi
 
 fi
