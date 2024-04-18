@@ -1,0 +1,23 @@
+services:
+
+  webgoat:
+    container_name: webgoat
+    image: kirscht/webgoat
+    hostname: "webgoat"
+    stdin_open: true
+    tty: true
+    environment:
+      - TZ=America/New_York
+    #    ports:
+    #      - 10014:8080
+    #      - 10015:9090
+    networks:
+      main_lab1-net:
+        ipv4_address: 172.20.192.16
+        aliases:
+          - webgoat
+          - webgoat.mylab.net
+
+networks:
+  main_lab1-net:
+    external: true
