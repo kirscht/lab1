@@ -1,0 +1,25 @@
+services:
+
+  ansible:
+    container_name: ansible
+    image: kirscht/ansible
+    hostname: "ansible"
+    stdin_open: true
+    tty: true
+    environment:
+      - TZ=America/New_York
+    volumes:
+      - ./ansible/etc:/etc/ansible
+      - ./ansible:/ansible
+    #    ports:
+    #      - 80
+    networks:
+      main_lab1-net:
+        ipv4_address: 172.20.192.18
+        aliases:
+          - ansible
+          - ansible.mylab.net
+
+networks:
+  main_lab1-net:
+    external: true
